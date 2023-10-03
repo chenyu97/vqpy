@@ -44,6 +44,7 @@ def create_tracker_node(query_obj: QueryBase, input_node):
     assert len(vobjs) == 1, "Only support one vobj in the predicate"
     vobj = list(vobjs)[0]
     class_name = vobj.class_name
+    tracker_name = vobj.object_tracker
     return input_node.set_next(
-        TrackerNode(class_name=class_name)
+        TrackerNode(class_name=class_name, tracker_name=tracker_name)
     )
