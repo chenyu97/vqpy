@@ -1,15 +1,14 @@
 import vqpy
 from vqpy.frontend.vobj import VObjBase, vobj_property
 from vqpy.frontend.query import QueryBase
-from Codes.vqpy.examples.aicity_query.aicity_recognize import recognize
-from Codes.vqpy.examples.aicity_query.aicity_recognize import prepare_recognize
-from getcolor import get_color
+from aicity_recognize import recognize
+from aicity_recognize import prepare_recognize
 import argparse
 from vqpy.operator.detector import register as detector_register
 from pathlib import Path
-from Codes.vqpy.examples.aicity_query.fake_detector import FakeDetectorAicity
+from fake_detector import FakeDetectorAicity
 from vqpy.operator.tracker import register as tracker_register
-from Codes.vqpy.examples.aicity_query.fake_tracker import FakeTrackerAicity
+from fake_tracker import FakeTrackerAicity
 import time
 
 
@@ -93,6 +92,8 @@ class ListRedSedanStraightCar(QueryBase):
 
 
 if __name__ == "__main__":
+    start_time = time.time()
+
     transform_color, model_color = prepare_recognize("color")
     transform_type, model_type = prepare_recognize("type")
     transform_direction, model_direction = prepare_recognize("direction")
@@ -126,19 +127,19 @@ if __name__ == "__main__":
                             default="./input_videos/" + name + ".mp4")
         parser.add_argument("--save_folder", help="path to save query result")
         args = parser.parse_args()
-
-        start_time = time.time()
+        
         query_executor = vqpy.init(
             video_path=args.path,
             query_obj=ListRedSedanStraightCar(object_detector_name=detector_name, recognize_parameters=recognize_par),
-            verbose=False,
+            verbose=True,
             output_per_frame_results=False,
         )
-        end_time = time.time()
-        print("cost time: " + str(end_time - start_time))
-
         return_result = vqpy.run(executor=query_executor, save_folder=args.save_folder, print_results=False, query_video_name=name)
+        
         for r in return_result:
             pass
-    
-    
+        
+    end_time = time.time()
+    total_time_exc = end_time - start_time
+
+    print('total_time_exc: ' + str(total_time_exc))

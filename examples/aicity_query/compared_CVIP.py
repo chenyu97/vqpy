@@ -2,8 +2,8 @@ import cv2
 import json
 from pathlib import Path
 import time
-from Codes.vqpy.examples.aicity_query.aicity_recognize import prepare_recognize
-from Codes.vqpy.examples.aicity_query.aicity_recognize import recognize_id
+from aicity_recognize import prepare_recognize
+from aicity_recognize import recognize_id
 from collections import Counter
 
 
@@ -117,7 +117,6 @@ if __name__ == "__main__":
 
     potential_cand = potential_cand + potential2_cand
     final_rank['track_id'] = potential_cand + unpotential_cand
-
 
     json.dump(final_rank, open('./results_compared_CVIP/result.json', 'w'), indent=4)
 
