@@ -78,9 +78,9 @@ class ListRedSedanStraightCar(QueryBase):
 
     def frame_constraint(self):
         return (self.car.score > 0.6) \
-               & (self.car.color.cmp(lambda color: "black" in color)) \
-               & (self.car.type.cmp(lambda type: "sedan" in type)) \
-               & (self.car.direction.cmp(lambda direction: "straight" in direction))
+            & (self.car.color.cmp(lambda color: "black" in color)) \
+            & (self.car.type.cmp(lambda type: "sedan" in type)) \
+            & (self.car.direction.cmp(lambda direction: "straight" in direction))
 
     def frame_output(self):
         return (

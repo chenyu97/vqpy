@@ -1,6 +1,6 @@
 #  AiCity Query
 
-To run the example as a script `main.py`, please first download the following data and models:
+To run the example as a script `main.py`, please first install the python dependencies listed in requirements.txt and download the following data and models:
 
 - Create the following directories:
   - vqpy/examples/aicity_query/data/checkpoints/CLIP_recogition_color/
