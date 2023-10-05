@@ -24,3 +24,7 @@ To run the example as a script `main.py`, please first install the python depend
     ```shell
     python main.py --save_folder /path/to/output/folder
     ```
+
+
+Performance Demonstration:
+![Alt text](./results/performance.png)

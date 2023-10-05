@@ -5,6 +5,9 @@ import time
 from aicity_recognize import prepare_recognize
 from aicity_recognize import recognize_id
 from collections import Counter
+from vqpy.utils.images import crop_image
+import numpy as np
+
 
 
 
@@ -60,7 +63,8 @@ if __name__ == "__main__":
                     raise ValueError("Fail to read image!")
 
                 [x, y, w, h] = bounding_box
-                cropped_image = image[y:y+h, x:x+w]
+                tlbr = [x, y, x+w, y+h]
+                cropped_image = crop_image(image, np.array(tlbr, dtype=np.float64))
 
                 reference = ["blue", "green", "black", "white", "red", "grey", "silver", "brown"]
                 color = recognize_id(transform_color, model_color, cropped_image, reference)
