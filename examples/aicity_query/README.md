@@ -27,4 +27,4 @@ To run the example as a script `main.py`, please first install the python depend
 
 
 Performance Demonstration:
-![Alt text](./results/performance.png)
+![Alt text](./results/performance_new.png)

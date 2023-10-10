@@ -1,4 +1,6 @@
 import json
+from collections import deque, Counter
+
 
 def not_color(data, color):
     return_keys = []
@@ -120,6 +122,9 @@ def optimal_order(data, query_color, query_type, query_direction):
                         return_keys = direction_and_not_type(data, query_direction, query_type)
                         for k in return_keys:
                             save_time += data[k]['color_cost']
+                if (color_order == 1) & (type_order == 2) & (direction_order == 0):
+                    print('120: ' + str(save_time))
+              
                 if save_time > save_time_max:
                     save_time_max = save_time
                     color_order_opt, type_order_opt, direction_order_opt = color_order, type_order, direction_order
@@ -134,10 +139,7 @@ if __name__ == '__main__':
     with open(file_path, 'r') as file:
         data = json.load(file)
 
-    query_color, query_type, query_direction = 'red', 'sedan', 'straight'
+    query_color, query_type, query_direction = 'black', 'suv', 'straight'
 
     order = optimal_order(data, query_color, query_type, query_direction)
     print(str(order))
-
-    #with open('./final_optimal_order_1', 'w') as file:
-    #    file.write(str(order))

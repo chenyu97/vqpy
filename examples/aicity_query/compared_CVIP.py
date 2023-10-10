@@ -9,8 +9,6 @@ from vqpy.utils.images import crop_image
 import numpy as np
 
 
-
-
 def is_same(attr_text, attr_track):
     for attr in attr_track:
         if attr_track[attr] != attr_text[attr]:
