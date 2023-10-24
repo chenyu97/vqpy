@@ -1,6 +1,7 @@
 from vqpy.backend.operator.base import Operator
 from vqpy.backend.frame import Frame
 from typing import Dict, List
+import time
 
 
 class FrameOutputFormatter(Operator):
@@ -36,6 +37,8 @@ class FrameOutputFormatter(Operator):
             other_frame_fields
         )
 
+        self.output_time = 0
+
     @staticmethod
     def _check_input(other_frame_fields):
         if other_frame_fields is None:
@@ -69,6 +72,9 @@ class FrameOutputFormatter(Operator):
         output = dict()
         if self.prev.has_next():
             frame = self.prev.next()
+
+            time_start = time.time()
+
             output["frame_id"] = frame.id
             for field in self.other_frame_fields:
                 if field not in frame.kwargs:
@@ -85,4 +91,10 @@ class FrameOutputFormatter(Operator):
                         for property_name in property_names:
                             vobj_dict[property_name] = vobj[property_name]
                         output[vobj_name].append(vobj_dict)
+            
+            time_end = time.time()
+            self.output_time += time_end - time_start
+            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/output_time_cost', 'a') as file:
+                file.write('output_time: ' + str(self.output_time) + '\n')
+
         return output

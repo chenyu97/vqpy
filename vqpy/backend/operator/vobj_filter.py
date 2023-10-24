@@ -1,6 +1,7 @@
 from vqpy.backend.operator.base import Operator
 from vqpy.backend.frame import Frame
 from typing import Callable, Union, List, Dict
+import time
 
 
 class VObjFilter(Operator):
@@ -22,6 +23,9 @@ class VObjFilter(Operator):
         """
         self.condition_func = condition_func
         self.filter_index = filter_index
+
+        self.filter_time = 0
+
         super().__init__(prev)
 
     def _update_filtered_class(self, class_name, frame: Frame):
@@ -65,7 +69,12 @@ class VObjFilter(Operator):
     def next(self) -> Frame:
         if self.has_next():
             frame = self.prev.next()
+            time_start = time.time()
             frame = self._update_filtered_vobjs(frame)
+            time_end = time.time()
+            self.filter_time += time_end - time_start
+            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/filter_time_cost', 'a') as file:
+                file.write('filter_time: ' + str(self.filter_time) + '\n')
             return frame
         else:
             raise StopIteration
