@@ -153,7 +153,7 @@ def run(
     executor,
     save_folder: str = None,
     print_results: bool = True,
-    query_video_name: str = None,
+    query_video_name: str = "DefaultName",
 ):
     """
     Args:

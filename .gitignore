@@ -177,3 +177,6 @@ examples/aicity_query/data/train/
 # VQPy logs
 logs/
 *.json
+
+# video
+*.mp4

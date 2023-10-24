@@ -26,11 +26,20 @@ class YoloDetector(DetectorBase):
             predictions[0].boxes.conf,
             predictions[0].boxes.cls,
         ):  # [0]: only a single frame
-            rets.append(
-                {
-                    "tlbr": np.asarray(pred_xyxy),
-                    "score": pred_conf.item(),
-                    "class_id": int(pred_cls),
-                }
-            )
+            if self.device == 0:
+                rets.append(
+                    {
+                        "tlbr": np.asarray(pred_xyxy.cpu()),
+                        "score": pred_conf.item(),
+                        "class_id": int(pred_cls),
+                    }
+                )
+            else:
+                rets.append(
+                    {
+                        "tlbr": np.asarray(pred_xyxy),
+                        "score": pred_conf.item(),
+                        "class_id": int(pred_cls),
+                    }
+                )
         return rets
