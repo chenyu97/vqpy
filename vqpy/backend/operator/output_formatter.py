@@ -94,7 +94,7 @@ class FrameOutputFormatter(Operator):
             
             time_end = time.time()
             self.output_time += time_end - time_start
-            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/output_time_cost', 'a') as file:
+            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/output_time_cost', 'a') as file:
                 file.write('output_time: ' + str(self.output_time) + '\n')
 
         return output

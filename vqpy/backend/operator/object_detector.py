@@ -95,7 +95,7 @@ class ObjectDetector(Operator):
             time_end = time.time()
 
             self.object_detect_time += time_end - time_start
-            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/object_detect_time_cost', 'a') as file:
+            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/object_detect_time_cost', 'a') as file:
                 file.write('object_detect_time: ' + str(self.object_detect_time) + '\n')
             
             return frame

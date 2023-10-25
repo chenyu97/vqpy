@@ -14,8 +14,8 @@ class Car(VObjBase):
         self.class_name = "car"
         self.object_detector = "yolov8m"
         self.detector_kwargs = {"device": 0}
-        self.object_tracker = "byte"
-        #self.object_tracker = "norfair"
+        # self.object_tracker = "byte"
+        self.object_tracker = "norfair"
 
         super().__init__()
 
@@ -46,12 +46,14 @@ if __name__ == "__main__":
     query = {'color': 'red', 'type': 'suv', 'direction': 'right'}
 
     # prepare video names
-    name_list = ['../../../Three_Datasets/Banff/cut_videos/3min_banff_sat_am001.mp4',
-                '../../../Three_Datasets/Banff/banff_sat_am001.mp4',
-                '../../../Three_Datasets/Jackson/cut_videos/3min_jacksonhole_sat_am000.mp4',
-                '../../../Three_Datasets/Jackson/jacksonhole_sat_am000.mp4',
-                '../../../Three_Datasets/Southampton/cut_videos/3min_raw000.mp4',
-                '../../../Three_Datasets/Southampton/raw000.mp4']
+    name_list = [ '../../../Three_Datasets/Banff/cut_videos/3min_banff_sat_am001.mp4',
+                 '../../../Three_Datasets/Banff/banff_sat_am001.mp4',
+                 '../../../Three_Datasets/Jackson/cut_videos/3min_jacksonhole_sat_am000.mp4',
+                 '../../../Three_Datasets/Jackson/jacksonhole_sat_am000.mp4',
+                 '../../../Three_Datasets/Southampton/cut_videos/3min_raw000.mp4',
+                 '../../../Three_Datasets/Southampton/raw000.mp4'
+                 ]
+    name_list = ['../../../Three_Datasets/Banff/cut_videos/3min_banff_sat_am001.mp4']
 
     # query on videos
     for index, name in enumerate(name_list):

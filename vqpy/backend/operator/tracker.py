@@ -74,7 +74,7 @@ class Tracker(Operator):
                         file.write(str(item) + '\n')
 
             self.track_time += time_end - time_start
-            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/track_time_cost', 'a') as file:
+            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/track_time_cost', 'a') as file:
                 file.write('track_time: ' + str(self.track_time) + '\n')
 
 

@@ -276,7 +276,7 @@ class VObjProjector(Operator):
             non_hist_data, hist_data = self._get_cur_frame_dependencies(frame)
             time_end = time.time()
             self.project_time_1 += time_end - time_start
-            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/project_time_cost_1', 'a') as file:
+            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/project_time_cost_1', 'a') as file:
                 file.write('project_time_1: ' + str(self.project_time_1) + '\n')
             
             time_start = time.time()
@@ -285,7 +285,7 @@ class VObjProjector(Operator):
             )
             time_end = time.time()
             self.project_time_2 += time_end - time_start
-            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/project_time_cost_2', 'a') as file:
+            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/project_time_cost_2', 'a') as file:
                 file.write('project_time_2: ' + str(self.project_time_2) + '\n')
             
             time_start = time.time()
@@ -293,13 +293,13 @@ class VObjProjector(Operator):
                 self._update_hist_buffer(hist_deps=output_hist_data)
             time_end = time.time()
             self.project_time_3 += time_end - time_start
-            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/project_time_cost_3', 'a') as file:
+            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/project_time_cost_3', 'a') as file:
                 file.write('project_time_3: ' + str(self.project_time_3) + '\n')
             
             time_end_total = time.time()
             
             self.project_time += time_end_total - time_start_total
-            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/project_time_cost', 'a') as file:
+            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/project_time_cost', 'a') as file:
                 file.write('project_time: ' + str(self.project_time) + '\n')
             
         return frame

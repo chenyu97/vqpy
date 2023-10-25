@@ -73,7 +73,7 @@ class VObjFilter(Operator):
             frame = self._update_filtered_vobjs(frame)
             time_end = time.time()
             self.filter_time += time_end - time_start
-            with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/filter_time_cost', 'a') as file:
+            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/filter_time_cost', 'a') as file:
                 file.write('filter_time: ' + str(self.filter_time) + '\n')
             return frame
         else:
