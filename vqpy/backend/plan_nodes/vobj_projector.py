@@ -1,5 +1,5 @@
 from typing import Any, Callable, Dict
-from vqpy.backend.operator.vobj_projector import VObjProjector
+from vqpy.backend.operator.vobj_projector_new import VObjProjector
 from vqpy.backend.plan_nodes.base import AbstractPlanNode
 from vqpy.frontend.query import QueryBase
 from vqpy.frontend.vobj.predicates import Predicate

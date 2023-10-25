@@ -67,6 +67,12 @@ class Tracker(Operator):
             frame = self._update_tracker(vobj_indexes, frame)
             time_end = time.time()
             
+            with open('vqpy_tracker', 'a') as file:
+                for key, value in frame.vobj_data.items():
+                    for item in value:    
+                        file.write(str(frame.id) + ': ')
+                        file.write(str(item) + '\n')
+
             self.track_time += time_end - time_start
             with open('/mnt/disk2/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/track_time_cost', 'a') as file:
                 file.write('track_time: ' + str(self.track_time) + '\n')

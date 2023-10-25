@@ -14,8 +14,8 @@ class Car(VObjBase):
         self.class_name = "car"
         self.object_detector = "yolov8m"
         self.detector_kwargs = {"device": 0}
-        self.object_tracker = "byte"
-        #self.object_tracker = "norfair"
+        #self.object_tracker = "byte"
+        self.object_tracker = "norfair"
 
         super().__init__()
 
@@ -32,11 +32,12 @@ class MyQuery(QueryBase):
         self.query = query
 
     def frame_constraint(self):
-        return (self.car.velocity > 1)
+        return (self.car.velocity > 0)
 
     def frame_output(self):
         return (
             self.car.track_id,
+            self.car.velocity,
             self.car.tlbr
         )
      
@@ -53,7 +54,7 @@ if __name__ == "__main__":
                 '../../../Three_Datasets/Southampton/cut_videos/3min_raw000.mp4',
                 '../../../Three_Datasets/Southampton/raw000.mp4']
 
-    name_list = ['../../../Three_Datasets/Banff/cut_videos/3min_banff_sat_am001.mp4']
+    name_list = ['./input_videos/ua_detrac.mp4']
 
     # query on videos
     for index, name in enumerate(name_list):
