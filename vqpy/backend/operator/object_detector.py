@@ -5,7 +5,6 @@ from collections import defaultdict
 from vqpy.operator.detector import vqpy_detectors
 import os
 import torch
-import time
 
 
 class ObjectDetector(Operator):
@@ -38,8 +37,6 @@ class ObjectDetector(Operator):
         self._check_set_class_names(class_names)
         self.detector = self._setup_detector(detector_name, **detector_kwargs)
         self.detector_name = detector_name
-
-        self.object_detect_time = 0
 
     def _check_set_class_names(self, class_names):
         if isinstance(class_names, str):
@@ -86,17 +83,12 @@ class ObjectDetector(Operator):
     def next(self) -> Frame:
         if self.has_next():
             frame = self.prev.next()
-            time_start = time.time()
             vobj_data = self._gen_vobj_data(frame.image)
             # Sanity check: the new detected classes don't exist in vobj_data.
             # Different detectors should not detect the same class.
             assert not self.class_names & frame.vobj_data.keys()
             frame.vobj_data.update(vobj_data)
-            time_end = time.time()
 
-            self.object_detect_time += time_end - time_start
-            
-            
             return frame
         else:
             raise StopIteration

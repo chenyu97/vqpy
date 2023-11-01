@@ -1,7 +1,6 @@
 from vqpy.backend.operator.base import Operator
 from vqpy.backend.frame import Frame
 from typing import Callable, Union, List, Dict
-import time
 
 
 class VObjFilter(Operator):
@@ -23,8 +22,6 @@ class VObjFilter(Operator):
         """
         self.condition_func = condition_func
         self.filter_index = filter_index
-
-        self.filter_time = 0
 
         super().__init__(prev)
 
@@ -69,10 +66,7 @@ class VObjFilter(Operator):
     def next(self) -> Frame:
         if self.has_next():
             frame = self.prev.next()
-            time_start = time.time()
             frame = self._update_filtered_vobjs(frame)
-            time_end = time.time()
-            self.filter_time += time_end - time_start
 
             return frame
         else:

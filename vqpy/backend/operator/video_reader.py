@@ -2,7 +2,6 @@ import cv2
 from loguru import logger
 from vqpy.backend.operator.base import Operator
 from vqpy.backend.frame import Frame
-import time
 
 
 class VideoReader(Operator):
@@ -10,7 +9,6 @@ class VideoReader(Operator):
         self._cap = cv2.VideoCapture(video_path)
         self.frame_id = -1
         self.metadata = self.get_metadata()
-        self.read_video_time = 0
 
     def get_metadata(self):
         frame_width = self._cap.get(cv2.CAP_PROP_FRAME_WIDTH)  # float
@@ -37,7 +35,6 @@ class VideoReader(Operator):
 
     def next(self) -> Frame:
         if self.has_next():
-            time_start = time.time()
             self.frame_id += 1
             ret_val, frame_image = self._cap.read()
             if not ret_val:
@@ -51,10 +48,6 @@ class VideoReader(Operator):
             frame = Frame(video_metadata=self.metadata,
                           id=self.frame_id,
                           image=frame_image)
-            
-            time_end = time.time()
-
-            self.read_video_time += time_end - time_start
 
             return frame
         else:

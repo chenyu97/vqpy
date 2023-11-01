@@ -93,7 +93,7 @@ class FrameOutputFormatter(Operator):
         
         time_end = time.time()
         time_each_frame = time_end - time_start
-        with open("/home/chenyu97/Codes/vqpy/examples/aicity_query/Drill_Down_result_vqpy", "a") as file:
+        with open("/home/chenyu97/Codes/vqpy/examples/aicity_query_drill_down/results_vqpy/drill_down_vqpy", "a") as file:
             file.write(str(frame_id) + ': ' + str(time_each_frame) + '\n')
 
         return output
