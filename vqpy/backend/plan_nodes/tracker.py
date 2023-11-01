@@ -21,7 +21,14 @@ class TrackerNode(AbstractPlanNode):
 
     def to_operator(self, launch_args: dict):
         # fps is for byte tracker
-        if self.tracker_name == 'byte':
+        if self.tracker_name == 'norfair':
+            return Tracker(
+                prev=self.prev.to_operator(launch_args),
+                class_name=self.class_name,
+                filter_index=self.filter_index,
+                tracker_name=self.tracker_name,
+            )
+        else:
             return Tracker(
                 prev=self.prev.to_operator(launch_args),
                 class_name=self.class_name,
@@ -29,13 +36,7 @@ class TrackerNode(AbstractPlanNode):
                 tracker_name=self.tracker_name,
                 fps=launch_args["fps"],
             )
-        elif self.tracker_name == 'norfair':
-            return Tracker(
-                prev=self.prev.to_operator(launch_args),
-                class_name=self.class_name,
-                filter_index=self.filter_index,
-                tracker_name=self.tracker_name,
-            )
+        
 
     def __str__(self):
         return f"TrackerNode(class_name={self.class_name}, \n" \

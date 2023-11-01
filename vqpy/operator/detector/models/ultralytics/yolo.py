@@ -29,7 +29,7 @@ class YoloDetector(DetectorBase):
         ):  # [0]: only a single frame
             rets.append(
                 {
-                    "tlbr": np.asarray(pred_xyxy),
+                    "tlbr": pred_xyxy.cpu().numpy(),
                     "score": pred_conf.item(),
                     "class_id": int(pred_cls),
                 }

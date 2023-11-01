@@ -55,8 +55,6 @@ class VideoReader(Operator):
             time_end = time.time()
 
             self.read_video_time += time_end - time_start
-            with open('/home/chenyu97/Codes/vqpy/examples/aicity_query/result_check/read_video_time_cost', 'a') as file:
-                file.write('read_video_time: ' + str(self.read_video_time) + '\n')
 
             return frame
         else:
