@@ -2,7 +2,6 @@ from vqpy.backend.operator.base import Operator
 from vqpy.backend.frame import Frame
 from vqpy.operator.tracker import vqpy_trackers
 from typing import Optional
-import time
 
 
 class Tracker(Operator):
@@ -34,7 +33,6 @@ class Tracker(Operator):
         self.tracker = vqpy_trackers[tracker_name](**tracker_kwargs)
         self.class_name = class_name
         self.filter_index = filter_index
-        self.track_time = 0
 
     def _update_tracker(self, vobj_indexes, frame: Frame):
         if len(vobj_indexes) > 0:
@@ -54,7 +52,6 @@ class Tracker(Operator):
     def next(self) -> Frame:
         if self.has_next():
             frame = self.prev.next()
-            time_start = time.time()
             if self.filter_index is not None:
                 if self.filter_index not in frame.filtered_vobjs:
                     raise ValueError("filter_index is not in filtered_vobjs")
@@ -65,10 +62,5 @@ class Tracker(Operator):
                     return frame
                 vobj_indexes = range(len(frame.vobj_data[self.class_name]))
             frame = self._update_tracker(vobj_indexes, frame)
-            time_end = time.time()
-            
-
-            self.track_time += time_end - time_start
-
 
         return frame

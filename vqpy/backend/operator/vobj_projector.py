@@ -7,7 +7,7 @@ from vqpy.utils.images import crop_image
 from vqpy.common import InvalidProperty
 
 import warnings
-import time
+
 
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
@@ -67,12 +67,6 @@ class VObjProjector(Operator):
             self._hist_dependencies.keys()
         )
         self._hist_buffer = pd.DataFrame(columns=columns)
-
-        self.project_time = 0
-
-        self.project_time_1 = 0
-        self.project_time_2 = 0
-        self.project_time_3 = 0
 
         super().__init__(prev)
 
@@ -270,30 +264,12 @@ class VObjProjector(Operator):
     def next(self) -> Frame:
         if self.prev.has_next():
             frame = self.prev.next()
-            time_start_total = time.time()
-            
-            time_start = time.time()
             non_hist_data, hist_data = self._get_cur_frame_dependencies(frame)
-            time_end = time.time()
-            self.project_time_1 += time_end - time_start
-            
-            time_start = time.time()
             frame, output_hist_data = self._compute_property(
                 non_hist_data, hist_data, frame=frame
             )
-            time_end = time.time()
-            self.project_time_2 += time_end - time_start
-            
-            time_start = time.time()
             if self._dep_on_hist and hist_data:
                 self._update_hist_buffer(hist_deps=output_hist_data)
-            time_end = time.time()
-            self.project_time_3 += time_end - time_start
-            
-            time_end_total = time.time()
-            
-            self.project_time += time_end_total - time_start_total
-            
         return frame
 
 

@@ -1,7 +1,6 @@
 from vqpy.backend.operator.base import Operator
 from vqpy.backend.frame import Frame
 from typing import Dict, List
-import time
 
 
 class FrameOutputFormatter(Operator):
@@ -67,12 +66,9 @@ class FrameOutputFormatter(Operator):
                 other_frame_fields: ...
             }
         """
-        time_start = time.time()
-        frame_id = 0
         output = dict()
         if self.prev.has_next():
             frame = self.prev.next()
-            frame_id = frame.id
 
             output["frame_id"] = frame.id
             for field in self.other_frame_fields:
@@ -90,10 +86,5 @@ class FrameOutputFormatter(Operator):
                         for property_name in property_names:
                             vobj_dict[property_name] = vobj[property_name]
                         output[vobj_name].append(vobj_dict)
-        
-        time_end = time.time()
-        time_each_frame = time_end - time_start
-        with open("/home/chenyu97/Codes/vqpy/examples/aicity_query/Drill_Down_result_vqpy", "a") as file:
-            file.write(str(frame_id) + ': ' + str(time_each_frame) + '\n')
 
         return output
