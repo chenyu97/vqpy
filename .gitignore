@@ -168,15 +168,16 @@ cython_debug/
 lpdetect/
 weights/
 YOLOX/
-examples/aicity_query/data/checkpoints
+**/data/checkpoints/
 
-# VQPY downloaded data
-input_videos/
-examples/aicity_query/data/train/
+# VQPY downloaded videos and images
+**/input_videos/
+**/data/train/
 
 # VQPy logs
-logs/
+**/logs/
 *.json
 
-# video
-*.mp4
+# output result
+**/results_*/
+
