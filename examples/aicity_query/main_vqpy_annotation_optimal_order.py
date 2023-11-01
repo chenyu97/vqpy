@@ -51,7 +51,7 @@ class Car(VObjBase):
     
     @vobj_property(inputs={"image": 0, "color": REUSE_TIMESCALE_THRESHOLD})
     def color(self, values):
-        print("show color list: " + str(values['color']))
+        #print("show color list: " + str(values['color']))
         counter = Counter(values["color"][:-1])
         most_common_element, count = counter.most_common(1)[0]
         if (most_common_element != None) and (count > (REUSE_TIMESCALE_THRESHOLD / 2.0)):
@@ -64,7 +64,7 @@ class Car(VObjBase):
 
     @vobj_property(inputs={"image": 0, "type": REUSE_TIMESCALE_THRESHOLD})
     def type(self, values):
-        print("show type list: " + str(values['type']))
+        #print("show type list: " + str(values['type']))
         counter = Counter(values["type"][:-1])
         most_common_element, count = counter.most_common(1)[0]
         if (most_common_element != None) and (count > (REUSE_TIMESCALE_THRESHOLD / 2.0)):
@@ -80,7 +80,7 @@ class Car(VObjBase):
         image = values["image"]
         reference = [ "straight", "right", "left", "stop"]
         direction = recognize(self.direction_detect_transform, self.direction_detect_model, image, reference)
-        print(direction)
+        #print(direction)
         return direction
 
 
