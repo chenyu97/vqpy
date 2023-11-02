@@ -1,30 +1,11 @@
-#  AiCity Query
+#  Compared SQL Query Auto Eval
 
-To run the example as a script `main.py`, please first install the python dependencies listed in requirements.txt and download the following data and models:
+To run the example, please first install the python dependencies listed in requirements.txt, install [norfair](https://github.com/hanryxu/norfair) and download the following data and models:
 
 - Create the following directories:
   - vqpy/examples/aicity_query/data/checkpoints/CLIP_recogition_color/
-  - vqpy/examples/aicity_query/data/checkpoints/CLIP_recogition_direction/
-  - vqpy/examples/aicity_query/data/checkpoints/CLIP_recogition_type/
-  - vqpy/examples/aicity_query/data/checkpoints/CLIP_recogition_v2_standard_extend/
-  
-  and then download the [models](https://drive.google.com/drive/folders/1CivhsX0xGxRda9EkZ6uqM_CMaJV40KMO), which should be placed in the above directories, respectively.
-- Create the following directory:
-  - vqpy/examples/aicity_query/input_videos/
-  
-  and then download the video data, which should be placed in the above directory.
-- Create the following directory:
-  - vqpy/examples/aicity_query/data/train/
-  
-  and then download the image data, which should be placed in the above directory.
+  and then download the [model](https://drive.google.com/drive/folders/1J6zSRS7ubWinO9BxKIt7e8lI2Z1zD6g2), which should be placed in the above directory.
 
+- Download [Banff](link), [Jackson](link) and [Southampton](link), and put them in the directory `Three_Datasets`. Ensure that `Three_Datasets` and the root directory `vqpy` are at the same level.
 
-- When running the example as the script, the command should look like:
-
-    ```shell
-    python main.py --save_folder /path/to/output/folder
-    ```
-
-
-Performance Demonstration:
-![Alt text](./results/performance_new.png)
+- Move the bash file `eval.sh` to the parent directory of root directory `vqpy`, which means that `eval.sh` and the root directory `vqpy` are at the same level. Then use: `bash eval.sh`.

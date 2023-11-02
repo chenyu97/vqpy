@@ -33,24 +33,24 @@ vqpy_q3_query=$vqpy_working_dir/Q3_Query_red_speeding_car.py
 # define evadb dirs
 evadb_dir=/home/chenyu97/Codes/Code_EvaDB
 
-evadb_q1_dir=$evadb_dir/1_query_stateless_property
+evadb_q1_dir=$evadb_dir/1_query_stateless_property_auto_eval
 evadb_q1_query=$evadb_q1_dir/query_red_car.py
 
-evadb_q2_dir=$evadb_dir/2_query_stateful_property
+evadb_q2_dir=$evadb_dir/2_query_stateful_property_auto_eval
 evadb_q2_query=$evadb_q2_dir/query_speeding_car.py
 
-evadb_q3_dir=$evadb_dir/3_query_stateless_and_stateful_properties
+evadb_q3_dir=$evadb_dir/3_query_stateless_and_stateful_properties_auto_eval
 evadb_q3_query=$evadb_q3_dir/query_red_speeding_car.py
 
 ########################### EDIT ####################################
 # choose dataset and query
 dataset=1
-query=2
+query=1
 video_list=("${dataset_1_video_list[@]}")
-vqpy_query=$vqpy_q2_query
-evadb_dir=$evadb_q2_dir
-evadb_query=$evadb_q2_query
-result_dir=$top_result_dir/dataset_1_query_2
+vqpy_query=$vqpy_q1_query
+evadb_dir=$evadb_q1_dir
+evadb_query=$evadb_q1_query
+result_dir=$top_result_dir/dataset_1_query_1
 ########################### EDIT END ####################################
 
 # make all dirs
@@ -64,21 +64,6 @@ for video in "${video_list[@]}"; do
 	mkdir -p $cur_result_dir
 	mkdir -p $cur_result_dir_vqpy
 	mkdir -p $cur_result_dir_evadb
-done
-
-# # activate vqpy conda and switch working dir
-conda activate vqpy
-cd $vqpy_working_dir
-
-# run vqpy query with variables passed in:
-# --path: path to video file
-# --save_folder: path to save query result
-# --save_time_file: path to save time
-for video in "${video_list[@]}"; do
-	video_name=$(basename "$video")
-	echo "running vqpy query on $video_name"
-	cur_result_dir=$result_dir/$video_name/vqpy
-	python $vqpy_query --path $video --save_folder $cur_result_dir
 done
 
 # activate evadb_venv conda env and switch to evadb working dir
@@ -95,6 +80,21 @@ for video in "${video_list[@]}"; do
 	python $evadb_query --path $video --save_folder $cur_result_dir
 	# clean up evadb_data and hope the disk space is enough
 	rm -rf $evadb_dir/evadb_data
+done
+
+# # activate vqpy conda and switch working dir
+conda activate vqpy
+cd $vqpy_working_dir
+
+# run vqpy query with variables passed in:
+# --path: path to video file
+# --save_folder: path to save query result
+# --save_time_file: path to save time
+for video in "${video_list[@]}"; do
+	video_name=$(basename "$video")
+	echo "running vqpy query on $video_name"
+	cur_result_dir=$result_dir/$video_name/vqpy
+	python $vqpy_query --path $video --save_folder $cur_result_dir
 done
 
 
