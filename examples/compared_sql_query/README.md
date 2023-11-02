@@ -1,6 +1,6 @@
 #  Compared SQL Query
 
-To run the example, please first install the python dependencies listed in requirements.txt and download the following data and models:
+To run the example, please first install the python dependencies listed in requirements.txt, install [norfair](https://github.com/hanryxu/norfair) and download the following data and models:
 
 - Create the following directories:
   - vqpy/examples/aicity_query/data/checkpoints/CLIP_recogition_color/
