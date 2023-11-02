@@ -1,6 +1,6 @@
 #  AiCity Query
 
-To run the example as a script `main.py`, please first install the python dependencies listed in requirements.txt and download the following data and models:
+To run the example, please first install the python dependencies listed in requirements.txt and download the following data and models:
 
 - Create the following directories:
   - vqpy/examples/aicity_query/data/checkpoints/CLIP_recogition_color/
@@ -12,19 +12,17 @@ To run the example as a script `main.py`, please first install the python depend
 - Create the following directory:
   - vqpy/examples/aicity_query/input_videos/
   
-  and then download the video data, which should be placed in the above directory.
+  and then download the [video data](link), which should be placed in the above directory.
 - Create the following directory:
   - vqpy/examples/aicity_query/data/train/
   
-  and then download the image data, which should be placed in the above directory.
+  and then download the [image data](link), which should be placed in the above directory.
 
 
 - When running the example as the script, the command should look like:
-
-    ```shell
-    python main.py --save_folder /path/to/output/folder
-    ```
-
-
-Performance Demonstration:
-![Alt text](./results/performance_new.png)
+  - To run vqpy of different queries (e.g., q1), use: 
+  `python main_vqpy_q1.py`
+  - To run vqpy with annotation of different queries (e.g., q1), use: 
+  `python main_vqpy_annotation_q1.py`
+  - To run vqpy with annotation and optimal order, use:
+  `python main_vqpy_annotation_optimal_order.py`

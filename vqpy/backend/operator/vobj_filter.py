@@ -67,7 +67,6 @@ class VObjFilter(Operator):
         if self.has_next():
             frame = self.prev.next()
             frame = self._update_filtered_vobjs(frame)
-
             return frame
         else:
             raise StopIteration

@@ -88,7 +88,6 @@ class ObjectDetector(Operator):
             # Different detectors should not detect the same class.
             assert not self.class_names & frame.vobj_data.keys()
             frame.vobj_data.update(vobj_data)
-
             return frame
         else:
             raise StopIteration

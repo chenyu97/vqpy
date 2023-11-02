@@ -73,7 +73,6 @@ class FrameOutputFormatter(Operator):
         if self.prev.has_next():
             frame = self.prev.next()
             frame_id = frame.id
-
             output["frame_id"] = frame.id
             for field in self.other_frame_fields:
                 if field not in frame.kwargs:
