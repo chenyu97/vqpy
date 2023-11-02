@@ -181,3 +181,6 @@ YOLOX/
 # output result
 **/results_*/
 
+# not ignore json files
+!**/resources/*.json
+
